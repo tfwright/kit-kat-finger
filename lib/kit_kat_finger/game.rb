@@ -23,10 +23,10 @@ module KitKatFinger
 
         def choose_move
             @board.winning_move(for: computer_name) ||
-                @board.blocking_move(against: @player_name) ||
-                @board.any_corner_move ||
-                @board.center_move ||
-                @board.side_move
+                @board.winning_move(for: @player_name) ||
+                Board::CORNERS.sample ||
+                Board::CENTER ||
+                Board::SIDES.sample
         end
 
         def computer_name

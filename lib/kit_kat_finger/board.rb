@@ -2,17 +2,21 @@ module KitKatFinger
      class InvalidMoveError < StandardError; end
 
     class Board
-        attr_reader :spaces
+        CORNERS = [:A1, :A3, :C1, :C3]
+        CENTER = :B2
+        SIDES = [:B1, :C2, :B3, :A2]
+
+        attr_reader :moves
 
         def initialize
-            @spaces = Hash[["A", "B", "C"].product([1, 2, 3]).map do |pair| 
-                [pair.join, nil]
+            @moves = Hash[["A", "B", "C"].product([1, 2, 3]).map do |pair| 
+                [pair.join.to_sym, nil]
             end]
         end
 
         def move(key, name)
-            raise InvalidMoveError, "Space taken" if @spaces[key]
-            @spaces[key] = name.upcase
+            raise InvalidMoveError, "Space taken" if @moves[key]
+            @moves[key] = name.upcase
         end
 
         def draw
@@ -30,18 +34,29 @@ module KitKatFinger
         end
 
         def winning_move(for: player_name)
-            player_spaces = @spaces.select { |_, name| name == player_name  }.keys
+            player_spaces = @moves.select { |_, name| name == player_name  }.keys
             
-            (1..3).times do |n|
-                row_remaining = ["A#{n}", "B#{n}", "C#{n}"] - player_spaces.select { |k| k.to_s.includes?(n) }
-                return row_remaining.first if row_remaining.size == 1
+            columns = %w(A B C).map do |column| 
+                @moves.keys.select { |k| k.start_with? column }
             end
+            rows = %w(1 2 3).map do |row|
+                @moves.keys.select { |k| k.end_with? row }
+            end
+            diagonals = [%w(A1 B2 C3), %w(A3 B3 C1)]
+
+            [columns, rows, diagonals].flatten.each do |set|
+                set_remaining = set - player_spaces
+                if set_remaining.count == 1 && @moves[set_remaining.first].blank?
+                    return set_remaining.first
+                end
+            end
+            nil
         end
 
         private
 
         def print_space(key)
-            @spaces[key] || " "
+            @moves[key] || " "
         end
     end
 end
