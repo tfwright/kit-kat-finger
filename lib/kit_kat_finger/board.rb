@@ -76,7 +76,7 @@ module KitKatFinger
         end
             
         def print_space(space)
-            "#{space} => #{@moves[space]}" || " "
+            @moves[space] || " "
         end
     end
 end
