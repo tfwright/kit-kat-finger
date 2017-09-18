@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'kit_kat_finger'
+KitKatFinger.play

@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "highline", "~> 1.7.8"
+gem 'highline-test'
 
 group :development do
   gem "minitest", ">= 0"
