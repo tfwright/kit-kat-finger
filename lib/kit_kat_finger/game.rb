@@ -1,5 +1,4 @@
 module KitKatFinger
-
     class Game
         def initialize
             set_turn
@@ -20,7 +19,7 @@ module KitKatFinger
             @board.draw
         end
 
-        private
+    private
 
         def choose_move
             @board.winning_move(for_player: computer_name) ||
@@ -60,5 +59,4 @@ module KitKatFinger
             KitKatFinger.cli.say "#{@board.winning_player_name || "Nobody"} has won!"
         end
     end
-    
 end

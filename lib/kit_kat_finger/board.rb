@@ -69,7 +69,7 @@ module KitKatFinger
             @moves.reject { |_, player_name| player_name.nil? }.keys
         end
 
-        private
+    private
 
         def player_spaces(player_name)
             @moves.select { |_, name| name == player_name  }.keys
