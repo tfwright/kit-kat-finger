@@ -36,8 +36,8 @@ module KitKatFinger
                     +---+---+---+
                 3   | #{ROWS[2].map { |s| print_space(s)}.join(" | ")} |
                     +---+---+---+
-
             }
+            puts "\n"
         end
 
         def winning_move(for_player: name)
