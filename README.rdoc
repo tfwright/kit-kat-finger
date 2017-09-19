@@ -9,6 +9,13 @@ A little game with a brand new name that probably violates a trademark
 3. Run `ruby -Ilib ./bin/kkf`
 4. Follow instructions!
 
+== To-do
+
+* Game tests
+* Better board tests
+* Smarter computer play/strategy
+* Variable randomness for difficulty settings
+
 == Contributing to kit_kat_finger
  
 * Not accepting contributions. I did this for me.
