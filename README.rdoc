@@ -13,6 +13,7 @@ A little game with a brand new name that probably violates a trademark
 
 * Game tests
 * Better board tests
+* Package gem into CL tool
 * Smarter computer play/strategy
 * Variable randomness for difficulty settings
 
