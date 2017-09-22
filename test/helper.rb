@@ -23,15 +23,10 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'minitest/test'
-
+require 'minitest/autorun'
 require 'highline/test'
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'kit_kat_finger'
 
 class MiniTest::Test
 end
-
-require 'minitest/autorun'
