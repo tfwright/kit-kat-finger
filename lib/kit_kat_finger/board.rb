@@ -52,10 +52,10 @@ module KitKatFinger
         end
 
         def winning_player_name
-            winning_set = (COLUMNS + ROWS + DIAGONALS).select do |set|
+            winning_set = (COLUMNS + ROWS + DIAGONALS).detect do |set|
                 @moves.values_at(*set).none? { |name| name.nil? } &&
                     @moves.values_at(*set).uniq.size == 1
-            end.first
+            end
             if winning_set
                 @moves[winning_set.first]
             end
